@@ -1,0 +1,30 @@
+<% @observatories.each do |observatory| %>
+    <div><%= observatory.name %></div>
+<% end %>
+
+<div>
+    <h2>新規登録</h2>
+    <%= form_for(:admin, :url => admin_create_path) do |f| %>
+        <%= f.label(:name) %>
+        <%= f.text_field(:name) %>
+        <%= f.label :address %>
+        <%= f.fields_for :address do |a| %>
+            <%= a.fields_for :prefecture do |p| %>
+                <%= p.label :prefecture %>
+                <%= p.text_field :name %>
+                <%= p.fields_for :city do |c| %>
+                    <%= c.label :city %>
+                    <%= c.text_field :name %>
+                    <%= c.fields_for :ward do |w| %>
+                        <%= w.label :ward %>
+                        <%= w.text_field :name %>
+                    <% end %>
+                <% end %>
+            <% end %>
+            <%= a.label :access %>
+            <%= a.text_field :access %>
+            
+        <% end %>
+        <%= f.submit('送信') %>
+    <% end %>
+</div>

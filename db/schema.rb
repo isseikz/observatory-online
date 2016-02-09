@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209035945) do
+ActiveRecord::Schema.define(version: 20160209140635) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "observatory_id"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160209035945) do
     t.string   "url"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "name"
   end
 
   create_table "prefectures", force: :cascade do |t|
