@@ -9,9 +9,13 @@ class AdminController < ApplicationController
 
   def create
     @observatory = Observatory.new(observatory_params)
-    @address = @observatory.build_address(observatory_params)
-    @prefecture = @address.prefectures
-    @observatory.save
+    if @observatory.save
+      redirect_to admin_index_path
+      flash[:notice] = "登録に成功しました。"
+    else
+      redirect_to admin_index_path
+      flash[:error] = "登録に失敗しました。"
+    end
   end
 
   def show
@@ -27,18 +31,6 @@ class AdminController < ApplicationController
   end
   private
   def observatory_params
-    params.require(:admin).permit(
-      :name,
-      :address => [
-        :access,
-        :prefecture => [
-          :name,
-          :city => [
-            :name,
-            :ward => [:name]
-          ]
-        ]
-      ]
-      )
+    params.require(:admin).permit(:url, :name, :location)
   end
 end
