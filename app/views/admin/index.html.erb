@@ -1,19 +1,18 @@
-<table>
-    <tr><td>名前</td><td>住所</td><td>画像ページ</td></tr>
-    <% @observatories.each do |observatory| %>
-    <tr>
-        <td><%= observatory.name %></td>
-        <td><%= observatory.location %></td>
-        <td><%= link_to "#{observatory.url}", observatory.url %></td>
-    </tr>
-    
-<% end %>
-</table>
-
-
-<div>
+<div class="container">
+    <h1>管理画面</h1>
+    <h2>登録天文台一覧</h2>
+    <table>
+        <tr><td>名前</td><td>住所</td><td>画像ページ</td></tr>
+        <% @observatories.each do |observatory| %>
+        <tr>
+            <td><%= observatory.name %></td>
+            <td><%= observatory.location %></td>
+            <td><%= link_to "#{observatory.url}", observatory.url %></td>
+        </tr>
+        <% end %>
+    </table>
     <h2>新規登録</h2>
-    <%= form_for :admin, :url => admin_create_path do |f| %>
+    <%= form_for :admin, :url => admin_create_path, :remote => true do |f| %>
         <%= f.label :name %>
         <%= f.text_field :name %>
         <%= f.label :location %>
