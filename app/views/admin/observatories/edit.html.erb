@@ -1,0 +1,13 @@
+<h1>Admin::Observatories#edit</h1>
+<p>Find me in app/views/admin/observatories/edit.html.erb</p>
+<%= form_for @observatory ,url: admin_observatory_path, :remote => true do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+    <%= f.submit '送信' %>
+<% end %>
+
+<%= link_to "戻る", admin_index_path %>

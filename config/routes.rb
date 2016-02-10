@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get 'admin/index' => 'admin#index'
-  post 'admin/create' => 'admin#create'
+  resources :admin
+  namespace :admin do
+    resources :observatories
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
